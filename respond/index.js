@@ -20,6 +20,10 @@ const createTextElement = nodeValue => {
 
 let previousInstance;
 export const render = (element, container) => {
+  if (container.firstChild) {
+    container.removeChild(container.firstChild);
+  }
+
   const nextInstance = reconcile(container, previousInstance, element);
   previousInstance = nextInstance;
 };
@@ -41,7 +45,6 @@ const reconcile = (dom, instance, element) => {
 
     return null;
   } else if (isDomNode(element)) {
-    // Replace instance.
     const nextInstance = instantiate(element);
     dom.replaceChild(nextInstance.dom, instance.dom);
 
