@@ -1,5 +1,11 @@
 import { Component, render, createElement } from './respond';
 
+class Title extends Component {
+  render() {
+    return <h1>{this.props.children}</h1>
+  }
+}
+
 class App extends Component {
   constructor(props) {
     super(props);
@@ -18,7 +24,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <h1>Count {this.state.count}</h1>
+        <Title>Count {this.state.count}</Title>
         <button onClick={e => this.increment()}>Increment</button>
         <button onClick={e => this.decrement()}>Decrement</button>
       </div>

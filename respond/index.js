@@ -7,7 +7,7 @@ export const createElement = (type, props, ...children) => {
     type,
     props: {
       ...props,
-      children: children
+      children: [].concat(...children)
         .filter(c => c != null && c !== false)
         .map(c => (c.type ? c : createTextElement(c)))
     }
@@ -168,7 +168,7 @@ const reconcileChildren = (instance, element) => {
 
 export class Component {
   constructor(props) {
-    this.props = {};
+    this.props = props;
   }
 
   setState(partialState) {
